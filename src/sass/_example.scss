@@ -1,28 +1,107 @@
-.example {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  line-height: 1.5;
-  background-color: #fff;
-  color: #2f2f37;
-  max-width: 960px;
-  padding: 16px;
+.container {
+  display: grid;
+  justify-items: center;
+  // margin-left: auto;
+  // margin-right: auto;
+}
+.image-link {
+  text-decoration: none;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+  display: block;
 }
 
-.example code {
-  font-family: monospace;
-  font-size: 16px;
-  font-weight: 700;
-  background-color: #ff6b0a;
-  color: #fff;
-  padding: 2px 6px;
-  border-radius: 2px;
+.photo-card {
+  box-shadow: 0px 1px 6px rgba(46, 47, 66, .08);
+}
+.photo-card:hover {
+  box-shadow: 0px 1px 6px rgba(46, 47, 66, .08),
+    0px 1px 1px rgba(46, 47, 66, .16),
+    0px 2px 1px rgba(46, 47, 66, .08);
+}
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 12px;
+  border-top: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  
+}
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  
+}
+.gallery {
+  display: grid;
+  justify-content: center;
+  // justify-items: center;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 15px;
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 768px) and (max-width: 1200px){
+      grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (min-width: 948px) and (max-width: 1199.98px) {
+      grid-template-columns: repeat(3, 1fr);
+  }
+  @media screen and (min-width: 1200px) {
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 1200px;
+  }
+}
+ .gallery-img {
+  display: block;
+  width: 100%;
+  // height: 100%;
+  height: 297px;
+  object-fit: cover;
+
+  @media screen and (max-width: 767px) {
+  
+      width: 486px;
+    }
+  @media screen and (min-width: 768px) and (max-width: 1200px) {
+  
+      height: 297px;
+    }
+  
+    @media screen and (min-width: 948px) and (max-width: 1199.98px) {
+    height: 297px;
+    }
+  
+    @media screen and (min-width: 1200px) {
+  
+      height: 221px;
+      width: 322px;
+    }
+}
+body {
+  font-family: sans-serif;
+  font-size: 20px;
+  width: 100vw;
+  height: 100vh;
 }
 
-.example .background {
-  height: 240px;
-  // ❗️❗️❗️ The path to images from a SASS file
-  // is always the same as from the css folder.
-  background-image: url('../images/logo.png');
-  background-size: cover;
-  background-position: center;
+.search-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100vw;
+  background-color: blue;
+  margin-bottom: 25px;
+}
+
+.load-more.js-invisible {
+  display: none;
+}
+
+.load-more {
+  display: block;
 }
