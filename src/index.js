@@ -18,20 +18,6 @@ const observer = new IntersectionObserver(
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         page += 1;
-        if (totalImages === 0) {
-    Notify.failure(
-      'Sorry, there are no images matching your search query. Please try again.'
-    );
-    return;
-  }
-        if (totalImages / page < 40) {
-          Notify.failure(
-              'Sorry, there are no images matching your search query. Please try again.'
-          );
-          footer.classList.add('js-invisible');
-
-    return;
-  }
         getImages(searchTerm, page);
       }
     });
@@ -46,26 +32,37 @@ function onSearchFormSubmit(evt) {
   evt.target.elements.searchQuery.value =
   evt.target.elements.searchQuery.value.trim();
   const inputSearch = evt.target.elements.searchQuery.value;
-
+  searchTerm = inputSearch;
+  page = 1;
+  gallery.innerHTML = '';
+  observer.unobserve(guard);
+  
   if (!inputSearch || inputSearch === "") {
     Notify.failure(
       'Sorry, there are no search query. Please type a query and try again.'
     );
     return;
   }
-  searchTerm = inputSearch;
-  page = 1;
-  gallery.innerHTML = '';
-  observer.unobserve(guard);
-  form.reset();
   getImages(searchTerm, page);
   loadMoreBtn.classList.remove('js-invisible');
   footer.classList.remove('js-invisible');
+  form.reset();
 }
 
 async function getImages(searchTerm, page) {
   const data = await fetchImages(searchTerm, page);
   renderImages(data);
+   totalImages = data.totalHits;
+  if (totalImages === 0) {
+    Notify.failure(
+      'Sorry, there are no images matching your search query. Please try again.'
+    );
+    footer.classList.add('js-invisible');
+    return;
+  }
+  if ((page === 1) && (totalImages !== 0)) {
+    Notify.success(`Hooray! We found ${totalImages} images`);
+  }
   const lightbox = new SimpleLightbox('.image-link', {
     captionsData: 'alt',
   });
@@ -77,7 +74,7 @@ async function getImages(searchTerm, page) {
   lightbox.refresh();
   const { height: cardHeight } = document
   .querySelector(".gallery")
-  .firstElementChild.getBoundingClientRect();
+  .firstElementChild?.getBoundingClientRect() || 0;
 window.scrollBy({
   top: cardHeight / 4,
   behavior: "smooth",
@@ -87,16 +84,16 @@ window.scrollBy({
 }
 
 function renderImages(data) {
-  totalImages = data.totalHits;
-  if (totalImages === 0) {
-    Notify.failure(
-      'Sorry, there are no images matching your search query. Please try again.'
-    );
-    return;
-  }
-  if ((page === 1) && (totalImages !== 0)) {
-    Notify.success(`Hooray! We found ${totalImages} images`);
-  }
+  // totalImages = data.totalHits;
+  // if (totalImages === 0) {
+  //   Notify.failure(
+  //     'Sorry, there are no images matching your search query. Please try again.'
+  //   );
+  //   return;
+  // }
+  // if ((page === 1) && (totalImages !== 0)) {
+  //   Notify.success(`Hooray! We found ${totalImages} images`);
+  // }
     console.log(totalImages);
     const markup = data.hits.map(
       ({
