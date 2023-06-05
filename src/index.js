@@ -18,6 +18,12 @@ const observer = new IntersectionObserver(
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         page += 1;
+        if (totalImages === 0) {
+    Notify.failure(
+      'Sorry, there are no images matching your search query. Please try again.'
+    );
+    return;
+  }
         if (totalImages / page < 40) {
           Notify.failure(
               'Sorry, there are no images matching your search query. Please try again.'
