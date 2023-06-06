@@ -33,7 +33,6 @@
       width: 320px;
     }
     @media screen and (max-width: 320.98px) and (max-width: 767.98px) {
-      min-width: 320px;
       max-width: 767px;
         }
     @media screen and (min-width: 768px) {
@@ -125,11 +124,16 @@ body {
 
 .search-form {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  flex-direction: row;
   justify-content: center;
-  align-content: center;
+  align-items: center;
   min-height: 100px;
   gap: 15px;
+  @media screen and (max-width: 480px) {
+     flex-wrap: wrap;
+     align-content: center;
+    }
 }
 .load-more.js-invisible {
   display: none;
@@ -147,19 +151,18 @@ body {
   padding-left: 10px;
   padding-right:10px;
   width: fit-content;
+  height: 25px;
 }
 .loadBtn:hover, .loadBtn:focus {
   background-color: rgb(227, 227, 227);
   outline: none;
+  height: 25px;
 }
 input[name="searchQuery"] {
   padding-left: 15px;
   border-radius: 4px;
   border: none;
-  margin-right: 10px;
-    @media screen and (max-width: 767.98px) {
-      margin-right: 0;
-    }
+  width: 260px;
 }
 
 input[name="searchQuery"]:focus, input[name="searchQuery"]:hover {
