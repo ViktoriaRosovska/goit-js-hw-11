@@ -1,5 +1,6 @@
 .header__section {
-    width: 100vw;
+    min-width: 320px;
+    width: 100%;
     background-color: blue;
     box-shadow: 0px 1px 6px rgba(66, 46, 46, 0.6);
     margin-left: auto;
@@ -26,8 +27,8 @@
   max-width: 375px;
   padding-left: 15px;
   padding-right: 15px;
-    margin-left: auto;
-      margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
     @media screen and (max-width: 320px) {
       width: 320px;
     }
@@ -99,7 +100,7 @@
   height: 297px;
   object-fit: cover;
 
-  @media screen and (max-width: 486px) {
+    @media screen and (max-width: 486px) {
       width: 320px;
     }
        
@@ -122,18 +123,13 @@ body {
   height: 100vh;
 }
 
-.search-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
-}
 .search-form {
-  @media screen and (max-width: 480px) {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  min-height: 100px;
+  gap: 15px;
 }
 .load-more.js-invisible {
   display: none;
@@ -145,6 +141,32 @@ body {
   margin-right: auto;
 }
 .loadBtn {
-  background-color: rgb(212, 210, 210);
+  background-color: rgb(245, 243, 243);
   border-radius: 4px;
+  border: none;
+  padding-left: 10px;
+  padding-right:10px;
+  width: fit-content;
+}
+.loadBtn:hover, .loadBtn:focus {
+  background-color: rgb(227, 227, 227);
+  outline: none;
+}
+input[name="searchQuery"] {
+  padding-left: 15px;
+  border-radius: 4px;
+  border: none;
+  margin-right: 10px;
+    @media screen and (max-width: 767.98px) {
+      margin-right: 0;
+    }
+}
+
+input[name="searchQuery"]:focus, input[name="searchQuery"]:hover {
+  outline: none;
+ 
+
+}
+input[name="searchQuery"]:hover {
+  background-color: rgb(245, 243, 243);
 }
