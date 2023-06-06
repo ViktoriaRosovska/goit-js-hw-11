@@ -30,7 +30,6 @@ function onSearchFormSubmit(e) {
   const inputSearch = evt.target.elements.searchQuery.value.trim();
   searchTerm = inputSearch;
   page = 0;
-  totalImages = 0;
   gallery.innerHTML = '';
   observer.unobserve(guard);
   
