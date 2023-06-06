@@ -27,7 +27,7 @@ const observer = new IntersectionObserver(
 form.addEventListener('submit', onSearchFormSubmit);
 function onSearchFormSubmit(e) {
   e.preventDefault();
-  const inputSearch = evt.target.elements.searchQuery.value.trim();
+  const inputSearch = e.target.elements.searchQuery.value.trim();
   searchTerm = inputSearch;
   page = 0;
   gallery.innerHTML = '';
