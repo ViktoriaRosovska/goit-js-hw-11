@@ -25,8 +25,8 @@ const observer = new IntersectionObserver(
 
 
 form.addEventListener('submit', onSearchFormSubmit);
-function onSearchFormSubmit(evt) {
-  evt.preventDefault();
+function onSearchFormSubmit(e) {
+  e.preventDefault();
   const inputSearch = evt.target.elements.searchQuery.value.trim();
   searchTerm = inputSearch;
   page = 0;
