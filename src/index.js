@@ -102,15 +102,5 @@ function renderImages(data) {
 loadMoreBtn.addEventListener('click', onClickLoadMoreBtn);
 
 function onClickLoadMoreBtn() {
-  // loadMoreBtn.classList.add('js-invisible');
-  // footer.classList.add('js-invisible');
-  // if (totalImages / page < 40) {
-  //   Notify.failure(
-  //     'Sorry, there are no images matching your search query. Please try again.'
-  //   );
-  //   return;
-  // }
   getImages(searchTerm);
-  // loadMoreBtn.classList.remove('js-invisible');
-  // footer.classList.remove('js-invisible');
 }
