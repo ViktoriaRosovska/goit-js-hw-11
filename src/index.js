@@ -13,16 +13,15 @@ const footer = document.querySelector('.footer');
 const guard = document.querySelector('.guard');
 
 const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
+  entries => {
+    entries.forEach(entry => {
       if (entry.isIntersecting) {
         getImages(searchTerm);
       }
     });
   },
-  { rootMargin: "200px" }
+  { rootMargin: '200px' }
 );
-
 
 form.addEventListener('submit', onSearchFormSubmit);
 function onSearchFormSubmit(e) {
@@ -32,8 +31,8 @@ function onSearchFormSubmit(e) {
   page = 0;
   gallery.innerHTML = '';
   observer.unobserve(guard);
-  
-  if (!inputSearch || inputSearch === "") {
+
+  if (!inputSearch || inputSearch === '') {
     Notify.failure(
       'Sorry, there are no search query. Please type a query and try again.'
     );
@@ -49,20 +48,17 @@ async function getImages(searchTerm) {
   page += 1;
   const data = await fetchImages(searchTerm, page);
 
-  if (page === 1)
-  {
+  if (page === 1) {
     if (data.hits.length) {
       Notify.success(`Hooray! We found ${data.totalHits} images`);
-    }
-    else {
+    } else {
       Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
       finishObserve();
       return;
     }
-  }
-  else if (!data.hits.length) {
+  } else if (!data.hits.length) {
     Notify.info('No more images matching your search query.');
     finishObserve();
     return;
@@ -78,13 +74,14 @@ async function getImages(searchTerm) {
     });
   });
   lightbox.refresh();
-  const { height: cardHeight } = document
-    .querySelector(".gallery")
-    .firstElementChild?.getBoundingClientRect() || 0;
+  const { height: cardHeight } =
+    document
+      .querySelector('.gallery')
+      .firstElementChild?.getBoundingClientRect() || 0;
 
   window.scrollBy({
     top: cardHeight / 4,
-    behavior: "smooth",
+    behavior: 'smooth',
   });
 
   observer.observe(guard);
