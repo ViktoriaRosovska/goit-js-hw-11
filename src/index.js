@@ -59,17 +59,13 @@ async function getImages(searchTerm) {
       Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
-      observer.unobserve(guard);
-      loadMoreBtn.classList.add('js-invisible');
-      footer.classList.add('js-invisible');
+      finishObserve();
       return;
     }
   }
   else if (!data.hits.length) {
     Notify.info('No more images matching your search query.');
-    observer.unobserve(guard);
-    loadMoreBtn.classList.add('js-invisible');
-    footer.classList.add('js-invisible');
+    finishObserve();
     return;
   }
 
@@ -103,4 +99,10 @@ loadMoreBtn.addEventListener('click', onClickLoadMoreBtn);
 
 function onClickLoadMoreBtn() {
   getImages(searchTerm);
+}
+
+function finishObserve() {
+  observer.unobserve(guard);
+  loadMoreBtn.classList.add('js-invisible');
+  footer.classList.add('js-invisible');
 }
