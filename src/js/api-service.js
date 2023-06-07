@@ -7,9 +7,8 @@ axios.defaults.baseURL = BASE_URL;
 
 
 async function fetchImages(serchTerm, page) {
-    try {
-        const { data } = await axios("", {
-            params: {
+    const { data } = await axios("", {
+        params: {
             key: API_KEY,
             q: serchTerm,
             image_type: "photo",
@@ -18,12 +17,8 @@ async function fetchImages(serchTerm, page) {
             page,
             per_page: 40,
         }
-        });
-        return data;    
-    } catch (error) {
-        console.log(error);
-    }
-    
+    });
+    return data;    
 }
 
 export { fetchImages };
